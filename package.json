@@ -1,7 +1,7 @@
 {
   "name": "logseq-journal-plugin",
   "version": "1.0.0",
-  "description": "Logseq slash command to import daily markdown from a private journal directory",
+  "description": "Import daily private journal markdown into Logseq journal pages with /journal",
   "main": "index.html",
   "scripts": {
     "build": "esbuild src/main.ts --bundle --platform=node --format=iife --target=es2020 --outfile=dist/main.js",
@@ -16,7 +16,7 @@
     "journal",
     "slash-command"
   ],
-  "author": "",
+  "author": "John Lin",
   "license": "MIT",
   "type": "commonjs",
   "logseq": {

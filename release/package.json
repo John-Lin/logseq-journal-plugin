@@ -1,7 +1,8 @@
 {
   "name": "logseq-journal-plugin",
   "version": "1.0.0",
-  "description": "Logseq slash command to import daily markdown from a private journal directory",
+  "description": "Import daily private journal markdown into Logseq journal pages with /journal",
+  "author": "John Lin",
   "main": "index.html",
   "logseq": {
     "id": "com.johnlin.journal",

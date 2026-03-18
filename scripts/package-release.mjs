@@ -18,6 +18,7 @@ async function writeReleasePackageJson() {
     name: packageJson.name,
     version: packageJson.version,
     description: packageJson.description,
+    author: packageJson.author,
     main: "index.html",
     logseq: packageJson.logseq,
     license: packageJson.license,

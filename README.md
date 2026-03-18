@@ -43,6 +43,26 @@ This plugin adds a slash command that imports daily markdown notes from a local 
 
 The plugin entry file is `index.html` (Logseq standard local plugin entry).
 
+## Install Without Marketplace
+
+Users can install it directly as a local plugin. No npm is required.
+
+1. Open this repository's `Releases` page on GitHub.
+2. Download `plugin-release.zip` from the latest release assets.
+3. Extract the ZIP file.
+4. In Logseq, enable Developer mode.
+5. Open `Plugins` -> `Load unpacked plugin`.
+6. Select the extracted folder.
+
+To update, download the newest `plugin-release.zip`, replace the old folder, and reload the plugin in Logseq.
+
+If you are developing the plugin, use:
+
+```bash
+npm install
+npm run package:release
+```
+
 ## Plugin Settings
 
 - `Tag`: tag text for imported root block. Plugin auto-prefixes `#`.
