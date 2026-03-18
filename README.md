@@ -14,15 +14,11 @@ Without that prerequisite, there may be no `.private-journal` content to import.
 ## Features
 
 - Slash command: `journal`
-- Imports all matching `*.md` files for the target date from either:
-  - source root files named with `YYYY-MM-DD` prefix
-  - `YYYY-MM-DD/` subfolder files
-- Uses only the current journal page date (`YYYY-MM-DD`)
-- Strips YAML frontmatter and keeps clean body content
-- Uses timestamp (`h:mm AM/PM`) as section headings
-- Converts markdown headings in body to plain text lines
-- Inserts shallow Logseq bullets (`time — section` with content one level below)
-- Adds configurable `#tag` on imported root block
+- Imports only the current journal page date (`YYYY-MM-DD`) from `.private-journal`
+- Supports both `YYYY-MM-DD*.md` and `YYYY-MM-DD/*.md` file structures
+- Converts entries into clean Logseq bullets (`time AM/PM — section`) with one-level content
+- Adds a configurable root tag (default: `#journal`)
+- Saves directory authorization across restarts, with command palette action to unlink access
 
 ## Setup
 
