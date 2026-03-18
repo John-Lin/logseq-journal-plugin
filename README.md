@@ -2,6 +2,15 @@
 
 This plugin adds a slash command that imports daily markdown notes from a local directory (default: `~/.private-journal`) into your current Logseq journal block.
 
+## Prerequisite
+
+Before using this plugin, set up and run `private-journal-mcp` first:
+
+- Repository: `https://github.com/John-Lin/private-journal-mcp`
+- Purpose: generates your local `.private-journal` data, which this plugin imports into Logseq.
+
+Without that prerequisite, there may be no `.private-journal` content to import.
+
 ## Features
 
 - Slash command: `journal`
@@ -45,7 +54,9 @@ The plugin entry file is `index.html` (Logseq standard local plugin entry).
 
 ## Install Without Marketplace
 
-Users can install it directly as a local plugin. No npm is required.
+Users can install it from a packed release ZIP. No npm is required.
+
+Note: Logseq does not load ZIP files directly. You still need to unzip first, then use `Load unpacked plugin`.
 
 1. Open this repository's `Releases` page on GitHub.
 2. Download `plugin-release.zip` from the latest release assets.
