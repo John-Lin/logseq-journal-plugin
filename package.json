@@ -1,0 +1,35 @@
+{
+  "name": "logseq-journal-plugin",
+  "version": "1.0.0",
+  "description": "Logseq slash command to import daily markdown from a private journal directory",
+  "main": "index.html",
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --platform=node --format=iife --target=es2020 --outfile=dist/main.js",
+    "package:release": "npm run build && node scripts/package-release.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "logseq",
+    "logseq-plugin",
+    "journal",
+    "slash-command"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "logseq": {
+    "id": "com.johnlin.journal",
+    "title": "Journal"
+  },
+  "dependencies": {
+    "@logseq/libs": "^0.2.12"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "esbuild": "^0.27.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
+  }
+}

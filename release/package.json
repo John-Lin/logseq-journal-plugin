@@ -1,0 +1,11 @@
+{
+  "name": "logseq-journal-plugin",
+  "version": "1.0.0",
+  "description": "Logseq slash command to import daily markdown from a private journal directory",
+  "main": "index.html",
+  "logseq": {
+    "id": "com.johnlin.journal",
+    "title": "Journal"
+  },
+  "license": "MIT"
+}
