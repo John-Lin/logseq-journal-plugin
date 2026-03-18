@@ -6,7 +6,7 @@ This plugin adds a slash command that imports daily markdown notes from a local 
 
 Before using this plugin, set up and run `private-journal-mcp` first:
 
-- Repository: `https://github.com/John-Lin/private-journal-mcp`
+- Repository: [John-Lin/private-journal-mcp](https://github.com/John-Lin/private-journal-mcp)
 - Purpose: generates your local `.private-journal` data, which this plugin imports into Logseq.
 
 Without that prerequisite, there may be no `.private-journal` content to import.
