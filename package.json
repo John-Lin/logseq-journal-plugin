@@ -1,6 +1,6 @@
 {
   "name": "logseq-journal-plugin",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Import daily private journal markdown into Logseq journal pages with /journal",
   "main": "index.html",
   "scripts": {
@@ -20,8 +20,9 @@
   "license": "MIT",
   "type": "commonjs",
   "logseq": {
-    "id": "com.johnlin.journal",
-    "title": "Journal"
+    "id": "com.johnlin.ai-journal",
+    "title": "AI Journal for Logseq",
+    "icon": "./icon.png"
   },
   "dependencies": {
     "@logseq/libs": "^0.2.12"
