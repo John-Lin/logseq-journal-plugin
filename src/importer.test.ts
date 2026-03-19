@@ -39,7 +39,7 @@ describe("buildImportedBlockContent", () => {
     ]);
 
     expect(content).toBe(
-      "> Imported from private journal: 2026-03-18 #journal\n\nsection\nline 2",
+      "> Imported from private journal #journal\n\nsection\nline 2",
     );
   });
 
@@ -50,7 +50,7 @@ describe("buildImportedBlockContent", () => {
     ]);
 
     expect(content).toBe(
-      "> Imported from private journal: 2026-03-18 #journal\n\n2026-03-18-a.md\nalpha\n\n2026-03-18-b.md\nbeta",
+      "> Imported from private journal #journal\n\n2026-03-18-a.md\nalpha\n\n2026-03-18-b.md\nbeta",
     );
   });
 
@@ -109,7 +109,7 @@ John asked concise project analysis in Chinese.
       },
     ]);
 
-    expect(batch.content).toBe("Imported from private journal: 2026-03-18 #journal");
+    expect(batch.content).toBe("Imported from private journal #journal");
     expect(batch.children).toBeDefined();
     expect(batch.children?.length).toBe(1);
     expect(batch.children?.[0]?.content).toMatch(/^\d{1,2}:\d{2}\s[AP]M\s—\sUser Context$/);
@@ -174,9 +174,7 @@ hello
       "Resource/custom-tag",
     );
 
-    expect(batch.content).toBe(
-      "Imported from private journal: 2026-03-18 #Resource/custom-tag",
-    );
+    expect(batch.content).toBe("Imported from private journal #Resource/custom-tag");
   });
 
   it("uses filename as label when no timestamp in frontmatter", () => {
@@ -199,34 +197,24 @@ hello
       "#journal",
     );
 
-    expect(batch.content).toBe("Imported from private journal: 2026-03-18 #journal");
+    expect(batch.content).toBe("Imported from private journal #journal");
   });
 });
 
 describe("isExistingImportBlock", () => {
   it("matches block with default tag", () => {
-    expect(
-      isExistingImportBlock("Imported from private journal: 2026-03-18 #journal", "2026-03-18"),
-    ).toBe(true);
+    expect(isExistingImportBlock("Imported from private journal #journal")).toBe(true);
   });
 
   it("matches block with custom tag", () => {
-    expect(
-      isExistingImportBlock("Imported from private journal: 2026-03-18 #custom/tag", "2026-03-18"),
-    ).toBe(true);
-  });
-
-  it("rejects different date", () => {
-    expect(
-      isExistingImportBlock("Imported from private journal: 2026-03-17 #journal", "2026-03-18"),
-    ).toBe(false);
+    expect(isExistingImportBlock("Imported from private journal #custom/tag")).toBe(true);
   });
 
   it("rejects unrelated block content", () => {
-    expect(isExistingImportBlock("Some random block content", "2026-03-18")).toBe(false);
+    expect(isExistingImportBlock("Some random block content")).toBe(false);
   });
 
   it("rejects empty content", () => {
-    expect(isExistingImportBlock("", "2026-03-18")).toBe(false);
+    expect(isExistingImportBlock("")).toBe(false);
   });
 });

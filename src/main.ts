@@ -115,7 +115,7 @@ const importPrivateJournalCommand: BlockCommandCallback = async (event) => {
   const pageBlocksTree = await logseq.Editor.getCurrentPageBlocksTree();
   if (pageBlocksTree) {
     for (const block of pageBlocksTree) {
-      if (block.uuid && block.content && isExistingImportBlock(block.content, isoDate)) {
+      if (block.uuid && block.content && isExistingImportBlock(block.content)) {
         await logseq.Editor.removeBlock(block.uuid);
       }
     }

@@ -43,7 +43,7 @@ export function buildImportedBlockContent(
   importedFiles: ImportedFileContent[],
   resourceTagPath?: string,
 ): string {
-  const header = `> ${buildImportTitle(isoDate, resourceTagPath)}`;
+  const header = `> ${buildImportTitle(resourceTagPath)}`;
   const parsedFiles = importedFiles
     .map((file) => parseImportedFile(file))
     .sort(compareImportedFiles);
@@ -71,20 +71,20 @@ export function buildImportedBatchBlock(
     .sort(compareImportedFiles);
 
   return {
-    content: buildImportTitle(isoDate, resourceTagPath),
+    content: buildImportTitle(resourceTagPath),
     children: parsedFiles.flatMap((file) => buildEntryBlocks(file)),
   };
 }
 
-const IMPORT_TITLE_PREFIX = "Imported from private journal:";
+const IMPORT_TITLE_PREFIX = "Imported from private journal";
 
-export function isExistingImportBlock(content: string, isoDate: string): boolean {
-  return content.startsWith(`${IMPORT_TITLE_PREFIX} ${isoDate} `);
+export function isExistingImportBlock(content: string): boolean {
+  return content.startsWith(`${IMPORT_TITLE_PREFIX} #`);
 }
 
-function buildImportTitle(isoDate: string, resourceTagPath?: string): string {
+function buildImportTitle(resourceTagPath?: string): string {
   const tag = normalizeImportTag(resourceTagPath);
-  return `${IMPORT_TITLE_PREFIX} ${isoDate} ${tag}`;
+  return `${IMPORT_TITLE_PREFIX} ${tag}`;
 }
 
 function normalizeImportTag(resourceTagPath: string | undefined): string {
