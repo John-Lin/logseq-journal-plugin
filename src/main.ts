@@ -16,7 +16,7 @@ import {
   loadStoredDirectoryHandle,
   saveStoredDirectoryHandle,
 } from "./directory-handle-store";
-import { buildImportedBatchBlock, resolveJournalIsoDate } from "./importer";
+import { buildImportedBatchBlock, isExistingImportBlock, resolveJournalIsoDate } from "./importer";
 import { extractJournalDay } from "./logseq-helpers";
 
 const DEFAULT_RESOURCE_TAG_PATH = "journal";
@@ -110,6 +110,15 @@ const importPrivateJournalCommand: BlockCommandCallback = async (event) => {
   if (importedFiles.length === 0) {
     await logseq.UI.showMsg(`No markdown files found for ${isoDate} in authorized directory`, "warning");
     return;
+  }
+
+  const pageBlocksTree = await logseq.Editor.getCurrentPageBlocksTree();
+  if (pageBlocksTree) {
+    for (const block of pageBlocksTree) {
+      if (block.uuid && block.content && isExistingImportBlock(block.content, isoDate)) {
+        await logseq.Editor.removeBlock(block.uuid);
+      }
+    }
   }
 
   const batch = buildImportedBatchBlock(isoDate, importedFiles, resourceTagPath);

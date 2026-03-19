@@ -76,9 +76,15 @@ export function buildImportedBatchBlock(
   };
 }
 
+const IMPORT_TITLE_PREFIX = "Imported from private journal:";
+
+export function isExistingImportBlock(content: string, isoDate: string): boolean {
+  return content.startsWith(`${IMPORT_TITLE_PREFIX} ${isoDate} `);
+}
+
 function buildImportTitle(isoDate: string, resourceTagPath?: string): string {
   const tag = normalizeImportTag(resourceTagPath);
-  return `Imported from private journal: ${isoDate} ${tag}`;
+  return `${IMPORT_TITLE_PREFIX} ${isoDate} ${tag}`;
 }
 
 function normalizeImportTag(resourceTagPath: string | undefined): string {

@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildImportedBatchBlock,
   buildImportedBlockContent,
+  isExistingImportBlock,
   resolveJournalIsoDate,
   resolveTargetIsoDate,
 } from "./importer";
@@ -178,6 +179,14 @@ hello
     );
   });
 
+  it("uses filename as label when no timestamp in frontmatter", () => {
+    const batch = buildImportedBatchBlock("2026-03-18", [
+      { filename: "2026-03-18-notes.md", content: "some notes" },
+    ]);
+
+    expect(batch.children?.[0]?.content).toBe("2026-03-18-notes.md");
+  });
+
   it("keeps one leading hash when config already includes #", () => {
     const batch = buildImportedBatchBlock(
       "2026-03-18",
@@ -191,5 +200,33 @@ hello
     );
 
     expect(batch.content).toBe("Imported from private journal: 2026-03-18 #journal");
+  });
+});
+
+describe("isExistingImportBlock", () => {
+  it("matches block with default tag", () => {
+    expect(
+      isExistingImportBlock("Imported from private journal: 2026-03-18 #journal", "2026-03-18"),
+    ).toBe(true);
+  });
+
+  it("matches block with custom tag", () => {
+    expect(
+      isExistingImportBlock("Imported from private journal: 2026-03-18 #custom/tag", "2026-03-18"),
+    ).toBe(true);
+  });
+
+  it("rejects different date", () => {
+    expect(
+      isExistingImportBlock("Imported from private journal: 2026-03-17 #journal", "2026-03-18"),
+    ).toBe(false);
+  });
+
+  it("rejects unrelated block content", () => {
+    expect(isExistingImportBlock("Some random block content", "2026-03-18")).toBe(false);
+  });
+
+  it("rejects empty content", () => {
+    expect(isExistingImportBlock("", "2026-03-18")).toBe(false);
   });
 });
