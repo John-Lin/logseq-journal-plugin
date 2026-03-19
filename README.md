@@ -85,6 +85,7 @@ npm run package:release
 5. Later runs reuse the saved authorization.
 6. If needed, run command palette action `Journal: Unlink Directory Access` to clear saved authorization.
 7. The plugin inserts imported content as a sibling block.
+8. Running the command again on the same date replaces the previous import with fresh content.
 
 Note: Authorization handle is saved and reused across Logseq restarts.
 Note: Import runs only on journal pages. On non-journal pages it will show an error.
